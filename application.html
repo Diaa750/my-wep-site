@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التقديمات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="logo.png" type="image/png">
+    
+    <style>
+        .navbar-nav .nav-link.active {
+    color: #0004ff; /* Active link color */
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+
+body .embedim-snow {
+  background-color: #1507db;
+  size: 10rem;
+}
+        body {
+            background-image: url(bg.png);
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+        }
+
+        header {
+            background-color: #d30000;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #0ba181;
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-icon {
+            font-size: 24px;
+            color: #f05454;
+            margin-right: 15px;
+        }
+
+        .card-content {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .status {
+            background-color: #f05454;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .status.open {
+            background-color: #28a745;
+        }
+
+        header nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        header nav ul li {
+            margin: 0 10px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-family: 'Lora', serif;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+        }
+[class~=custom-footer]{background-color:#970240;}[class~=custom-footer] p{font-size:1.125pc;}[class~=custom-footer] p{line-height:1.5;}[class~=custom-footer] p,[class~=custom-footer]{color:#fff;}*{margin-left:0;}[class~=custom-footer],*{padding-left:0;}*{margin-bottom:0;}[class~=custom-footer]{padding-bottom:15pt;}*{margin-right:0;}*,[class~=custom-footer]{padding-right:0;}*{margin-top:0;}[class~=custom-footer]{padding-top:15pt;}body{font-family:"XRUN",sans-serif;}[class~=custom-footer]{text-align:center;}*{padding-bottom:0;}[class~=custom-footer]{position:relative;}[class~=custom-footer]{bottom:0;}[class~=custom-footer]{width:100%;}*{padding-top:0;}*{box-sizing:border-box;}[class~=custom-footer]{box-shadow:0 -3.75pt .15625in rgba(0,0,0,.3);}[class~=highlight-green]{color:#28a745;}[class~=highlight-blue]{color:#1e90ff;}@media (max-width: 768px){[class~=custom-footer] p{font-size:16px;}}
+    </style>
+</head>
+<body>
+    <audio id="background-music" loop>
+        <source src="MP3/MP3.mp3" type="audio/mpeg">
+        متصفحك لا يدعم تشغيل الصوت.
+    </audio>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById('background-music');
+            audio.play().catch(function(error) {
+                console.error('لم يتم تشغيل الموسيقى تلقائيًا:', error);
+            });
+        });
+    </script>
+
+    <header>
+        <h1>التقديمات</h1>
+    </header>
+
+    <div class="container">
+        <div class="card" data-id="الدعم الفني">
+            <div class="card-content">
+                <i class="fas fa-headset" style="padding: 5px; color: rgb(0, 255, 0); " ></i>
+                <span class="card-title">تقديم الدعم الفني</span>
+            </div>
+            <span class="status">مغلق</span>
+        </div>
+
+        <div class="card" data-id="تقديم المنظمات">
+            <div class="card-content">
+                <i class="fas fa-users" style="padding: 5px; color: rgb(201, 6, 6); " ></i>
+                <span class="card-title">تقديم المنظمات</span>
+            </div>
+            <span class="status">مغلق</span>
+        </div>
+
+        <div class="card" data-id="تقديم طاقم الديسكورد">
+            <div class="card-content">
+                <i class="fab fa-discord" style="padding: 5px; color: #1900ff; " ></i>
+                <span class="card-title">تقديم طاقم الديسكورد</span>
+            </div>
+            <span class="status">مغلق</span>
+        </div>
+
+        <div class="card" data-id="تقديم الهئية العامة">
+            <div class="card-content">
+                <i class="fas fa-star" style="padding: 5px; color: yellow; " ></i>
+                <span class="card-title">تقديم الهيئة العامة</span>
+            </div>
+            <span class="status">مغلق</span>
+        </div>
+
+        <div class="card" data-id="تقديم شارة التوثيق">
+            <div class="card-content">
+                <i class="fa fa-id-badge" style="padding: 5px; color: #f05454; " ></i>
+                <span class="card-title">تقديم شارة التوثيق</span>
+            </div>
+            <span class="status">مغلق</span>
+        </div>
+
+        <div class="card" data-id="تقديم يوتيوبر">
+            <div class="card-content">
+                <i class="fas fa-video card-icon"></i>
+                <span class="card-title">تقديم اليوتيوبر</span>
+            </div>
+            <span class="status">مغلق</span>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById('background-music');
+            audio.play().catch(function(error) {
+                console.error('لم يتم تشغيل الموسيقى تلقائيًا:', error);
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch(`applicationStatus.json?timestamp=${new Date().getTime()}`)
+                .then(response => response.json())
+                .then(data => {
+                    updateStatuses(data);
+                })
+                .catch(error => console.error('Error fetching JSON:', error));
+
+            document.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const cardId = card.getAttribute('data-id');
+                    const statusElement = card.querySelector('.status');
+                    const status = statusElement.textContent;
+
+                    if (status === 'مفتوح') {
+                        window.location.href = 'form.html';
+                    } else {
+                        // لا شيء يحدث إذا كانت الحالة مغلقة
+                    }
+                });
+            });
+        });
+
+        function updateStatuses(statusMap) {
+            document.querySelectorAll('.card').forEach(card => {
+                const cardId = card.getAttribute('data-id');
+                const statusElement = card.querySelector('.status');
+                const status = statusMap[cardId] || 'مغلق';
+
+                if (status === 'مفتوح') {
+                    statusElement.textContent = 'مفتوح';
+                    statusElement.classList.add('open');
+                    statusElement.classList.remove('closed');
+                } else {
+                    statusElement.textContent = 'مغلق';
+                    statusElement.classList.remove('open');
+                    statusElement.classList.add('closed');
+                }
+            });
+        }
+    </script>
+ <script src="snow.js"></script>
+ <script>
+    document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.ctrlKey && e.shiftKey) {
+                const forbiddenCodes = {
+                    'KeyT': true,
+                    'KeyH': true,
+                    'KeyS': true,
+                    'KeyU': true,
+                    'KeyC': true,
+                    'KeyN': true
+                };
+
+                if (e.code in forbiddenCodes) {
+                    e.preventDefault();
+                }
+            }
+
+            if (e.code === "F12" || (e.ctrlKey && (e.code === 'KeyI' || e.code === 'KeyJ' || e.code === 'KeyU'))) {
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+        });
+
+        (function() {
+            let devToolsOpen = false;
+
+            const threshold = 160;
+            const checkDevTools = function() {
+                // التحقق فقط من الفرق بين الأبعاد الداخلية والخارجية للنافذة
+                if (window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold) {
+                    devToolsOpen = true;
+                } else {
+                    devToolsOpen = false; // إذا كانت الأبعاد طبيعية، نعيد الحالة إلى مغلقة
+                }
+            };
+
+            setInterval(function() {
+                checkDevTools();
+
+                if (devToolsOpen) {
+                    // إذا تم اكتشاف أدوات المطور، يتم إغلاق الصفحة بشكل فوري
+                    window.location.href = 'about:blank'; // يمكن استبداله بـ window.close() إذا كانت الصفحة نافذة منبثقة
+                }
+            }, 1000);
+        })();
+ </script>
+</body>
+</html>

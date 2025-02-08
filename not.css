@@ -1,0 +1,46 @@
+.notification {
+    position: fixed;
+    top: 80px;
+    left: 90%;
+    transform: translateX(-50%);
+    background-color: #07208d;
+    border: 2px solid #ffffff;
+    box-shadow: 0 2px 4px rgba(136, 1, 114, 0.507);
+    border-radius: 5px;
+    width: 300px;
+    text-align: center;
+    padding: 10px;
+    z-index: 1000;
+    display: none;
+}
+
+.notification .bar {
+    height: 6px;
+    width: 100%;
+    background-color: rgb(255, 174, 0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: progress 5s linear;
+}
+
+.notification h4 {
+    margin: 10px 0 5px;
+    color: #0ae212;
+    font-size: 18px;
+}
+
+.notification p {
+    margin: 0;
+    font-size: 14px;
+    color: #ff0000;
+}
+
+@keyframes progress {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0;
+    }
+}

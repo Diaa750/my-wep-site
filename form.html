@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BY XRUN - مستقل</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="not.css">
+</head>
+<body>
+    <div class="notification" id="notification">
+        <div class="bar"></div>
+        <h4>Success ✔</h4>
+        <p>يرجي الانتظار 5 ثواني للانتقال</p>
+    </div>
+    <nav>
+        <div class="logo">
+            <h1>
+                <img src="logo.png" alt="Logo" style="width: 50px; height: auto; vertical-align: middle; margin-right: 10px;">
+                | HELL <SPAN>ROLEPLAY</SPAN> Network
+            </h1>
+        </div>
+        <ul>
+            <li><a class="active" href="index.html">الرئيسية</a></li>
+            <li><a href="info.html">السيرفرات</a></li>
+            <li><a href="application.html">تقديم ادارة</a></li>
+            <li><a href="https://discord.gg/hellroleplay">الدسكورد</a></li>
+            <li><a href="/store.html">المتجر</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="form-container">
+            <h1>نموذج تقديم الإدارة</h1>
+            <div class="question" id="questionContainer"></div>
+            <button class="submit-btn" id="nextButton">→</button>
+            <div id="responseMessage" style="margin-top: 10px; color: green;"></div>
+        </div>
+    </main>
+
+    <script>
+        const questions = [
+            "السؤال 1: ما هو اسمك؟",
+            "السؤال 2: ما هو عمرك؟",
+            "السؤال 3: ما هو القانون المفضل لديك؟",
+            "السؤال 4: لماذا ترغب في الانضمام إلى الإدارة؟",
+            "السؤال 5: ما هي مهاراتك؟",
+            "السؤال 6: هل لديك خبرة سابقة؟",
+            "السؤال 7: كيف تعرفت علينا؟",
+            "السؤال 8: ما هي اهتماماتك؟",
+            "السؤال 9: كيف يمكنك المساهمة في الفريق؟",
+            "السؤال 10: هل لديك أسئلة لنا؟",
+            "السؤال 11: ما هي أهدافك في المستقبل؟",
+            "السؤال 12: ايدي الديسكورد الخاص بك:"
+        ];
+    
+        let currentQuestion = 0;
+        const responses = [];
+    
+        function showQuestion() {
+            const questionContainer = document.getElementById('questionContainer');
+            questionContainer.innerHTML = `
+                <label for="response">${questions[currentQuestion]}</label>
+                <input type="text" id="response" placeholder="الإجابة هنا">
+            `;
+        }
+    
+        document.getElementById('nextButton').addEventListener('click', () => {
+            const response = document.getElementById('response').value;
+            if (response === "") {
+                alert("يرجى إدخال إجابة قبل الانتقال للسؤال التالي.");
+                return;
+            }
+    
+            responses.push(response);
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                showQuestion();
+            } else {
+                submitForm(responses);
+            }
+        });
+    
+        function submitForm(data) {
+            const serverUrl = 'http://localhost:3000/submit-form';
+    
+            fetch(serverUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ responses: data }),
+            })
+            .then(response => response.json())
+            .then(message => {
+                if (message.success) {
+                    document.getElementById('responseMessage').innerText = "تم إرسال جميع الإجابات بنجاح!";
+                } else {
+                    document.getElementById('responseMessage').innerText = "حدث خطأ أثناء الإرسال.";
+                    document.getElementById('responseMessage').style.color = "red";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('responseMessage').innerText = "حدث خطأ أثناء الإرسال.";
+                document.getElementById('responseMessage').style.color = "red";
+            });
+        }
+    
+        showQuestion();
+    </script>     
+    <script src="not.js"></script>
+    <script src="snow.js"></script>
+    <script>document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.ctrlKey && e.shiftKey) {
+            const forbiddenCodes = {
+                'KeyT': true,
+                'KeyH': true,
+                'KeyS': true,
+                'KeyU': true,
+                'KeyC': true,
+                'KeyN': true
+            };
+
+            if (e.code in forbiddenCodes) {
+                e.preventDefault();
+            }
+        }
+
+        if (e.code === "F12" || (e.ctrlKey && (e.code === 'KeyI' || e.code === 'KeyJ' || e.code === 'KeyU'))) {
+            e.preventDefault();
+        }
+    });
+
+    document.addEventListener('copy', function(e) {
+        e.preventDefault();
+    });
+
+    (function() {
+        let devToolsOpen = false;
+
+        const threshold = 160;
+        const checkDevTools = function() {
+            // التحقق فقط من الفرق بين الأبعاد الداخلية والخارجية للنافذة
+            if (window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold) {
+                devToolsOpen = true;
+            } else {
+                devToolsOpen = false; // إذا كانت الأبعاد طبيعية، نعيد الحالة إلى مغلقة
+            }
+        };
+
+        setInterval(function() {
+            checkDevTools();
+
+            if (devToolsOpen) {
+                // إذا تم اكتشاف أدوات المطور، يتم إغلاق الصفحة بشكل فوري
+                window.location.href = 'about:blank'; // يمكن استبداله بـ window.close() إذا كانت الصفحة نافذة منبثقة
+            }
+        }, 1000);
+    })();
+    </script>
+</body>
+</html>

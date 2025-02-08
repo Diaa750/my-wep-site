@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BY XRUN - مستقل</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="not.css">
+
+</head>
+<style>
+    .navbar-nav .nav-link.active {
+    color: #0004ff; /* Active link color */
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+
+body .embedim-snow {
+  background-color: #1507db;
+  size: 10rem;
+}
+    body{
+        background-image: url(bg.png);
+        background-size: cover;
+    }
+    .purchase-panel {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #00ccff;
+        border: 1px solid #490a7c;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .purchase-panel h1 {
+        color: #e90000;
+    }
+
+    .purchase-panel label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    .purchase-panel input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .purchase-panel button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .purchase-panel button:hover {
+        background-color: #45a049;
+    }
+</style>
+<body>
+    <div class="notification" id="notification">
+        <div class="bar"></div>
+        <h4>Success ✔</h4>
+        <p>يرجي الانتظار 5 ثواني للانتقال</p>
+    </div>
+    <div class="purchase-panel">
+        <h1>لوحة الشراء</h1>
+
+        <form id="purchase-form">
+            <!-- إدخال أيدي داخل الخادم -->
+            <label for="server-id">أيدي داخل الخادم:</label>
+            <input type="text" id="server-id" name="serverId" required>
+
+            <!-- إدخال أيدي ديسكورد -->
+            <label for="discord-id">أيدي ديسكورد:</label>
+            <input type="text" id="discord-id" name="discordId" required>
+
+            <!-- عرض اسم المنتج والسعر -->
+            <label for="product-name">اسم المنتج:</label>
+            <input type="text" id="product-name" name="productName" readonly>
+
+            <label for="product-price">السعر:</label>
+            <input type="text" id="product-price" name="productPrice" readonly>
+
+            <!-- زر تأكيد الشراء -->
+            <button type="submit">تأكيد الشراء</button>
+        </form>
+    </div>
+    <script src="not.js"></script>
+    <script src="snow.js"></script>
+    <script>
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.ctrlKey && e.shiftKey) {
+                const forbiddenCodes = {
+                    'KeyT': true,
+                    'KeyH': true,
+                    'KeyS': true,
+                    'KeyU': true,
+                    'KeyC': true,
+                    'KeyN': true
+                };
+
+                if (e.code in forbiddenCodes) {
+                    e.preventDefault();
+                }
+            }
+
+            if (e.code === "F12" || (e.ctrlKey && (e.code === 'KeyI' || e.code === 'KeyJ' || e.code === 'KeyU'))) {
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+        });
+
+        (function() {
+            let devToolsOpen = false;
+
+            const threshold = 160;
+            const checkDevTools = function() {
+                // التحقق فقط من الفرق بين الأبعاد الداخلية والخارجية للنافذة
+                if (window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold) {
+                    devToolsOpen = true;
+                } else {
+                    devToolsOpen = false; // إذا كانت الأبعاد طبيعية، نعيد الحالة إلى مغلقة
+                }
+            };
+
+            setInterval(function() {
+                checkDevTools();
+
+                if (devToolsOpen) {
+                    // إذا تم اكتشاف أدوات المطور، يتم إغلاق الصفحة بشكل فوري
+                    window.location.href = 'about:blank'; // يمكن استبداله بـ window.close() إذا كانت الصفحة نافذة منبثقة
+                }
+            }, 1000);
+        })();
+    </script>
+</body>
+</html>
